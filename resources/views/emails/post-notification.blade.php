@@ -3,10 +3,6 @@
 
 {{ $post->description }}
 
-@component('mail::button', ['url' => $post->url])
-Read More
-@endcomponent
-
 Thanks,
-{{ config('app.name') }}
+{{ $post->website->name }}
 @endcomponent
