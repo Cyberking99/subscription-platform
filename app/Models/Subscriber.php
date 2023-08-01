@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Subscriber extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['email', 'website_id'];
+
+    // Belongs-to relationship with the Website model
+    public function website()
+    {
+        return $this->belongsTo(Website::class);
+    }
 }

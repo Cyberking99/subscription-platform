@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['title', 'description', 'website_id'];
+
+    // Belongs-to relationship with the Website model
+    public function website()
+    {
+        return $this->belongsTo(Website::class);
+    }
 }
