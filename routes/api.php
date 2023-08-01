@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\WebsiteController;
 
 
@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/websites/{website}/posts', [PostController::class, 'create']);
 
 // User subscribe to a website
-Route::post('/websites/{website}/subscribe', [SubscriptionController::class, 'subscribe']);
+Route::post('/websites/{website}/subscribe', [SubscriberController::class, 'subscribe']);
 
 // Create a new website
 Route::post('/websites', [WebsiteController::class, 'create']);
