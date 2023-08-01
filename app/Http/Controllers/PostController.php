@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Website;
+use App\Jobs\SendPostEmailsJob;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -16,9 +17,12 @@ class PostController extends Controller
             'description' => 'required|string',
         ]);
 
-        $post = $website->posts()->create($validatedData);
+        $post = new Post($validatedData);
+        $post->website()->associate($website);
+        $post->save();
 
-        // Send an email to subscribers here (will be handled through a command and queue)
+        // Dispatch the job to send emails to subscribers for new posts
+        SendPostEmailsJob::dispatch($post);
         
         return response()->json(['message' => 'Post created successfully', 'post' => $post], 201);
     }
