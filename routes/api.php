@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\WebsiteController;
 
 
 /*
@@ -26,3 +27,6 @@ Route::post('/websites/{website}/posts', [PostController::class, 'create']);
 
 // User subscribe to a website
 Route::post('/websites/{website}/subscribe', [SubscriptionController::class, 'subscribe']);
+
+// Create a new website
+Route::post('/websites', [WebsiteController::class, 'create']);
